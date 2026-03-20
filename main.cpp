@@ -1,14 +1,17 @@
-#include <zip.h>
 #include <iostream>
+#include <magic_enum.hpp>
+#include <nlohmann/json.hpp>
+
+enum class Color { RED, GREEN, BLUE };
 
 int main() {
-    int err = 0;
-    zip_t* zip = zip_open("test.zip", ZIP_CREATE, &err);
-    if (zip) {
-        std::cout << "libzip version: " << zip_libzip_version() << std::endl;
-        zip_close(zip);
-    } else {
-        std::cout << "Failed to create zip file, error: " << err << std::endl;
-    }
-    return 0;
+  // Test direct dependency: nlohmann_json
+  std::cout << "nlohmann_json test" << std::endl;
+
+  // Test transitive dependency: magic_enum (via nlohmann_json)
+  // magic_enum is header-only library,    // Note: nlohmann_json uses
+  // cpp_info.requires (NOT components) to depend on magic_enum
+  std::cout << "magic_enum: " << magic_enum::enum_name(Color::RED) << std::endl;
+
+  return 0;
 }

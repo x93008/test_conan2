@@ -1,5 +1,5 @@
 from conan import ConanFile
-from conan.tools.cmake import CMake, CMakeToolchain, cmake_layout
+from conan.tools.cmake import CMake, cmake_layout
 
 
 class TestConan2Conan(ConanFile):
@@ -10,7 +10,7 @@ class TestConan2Conan(ConanFile):
     exports_sources = "CMakeLists.txt", "main.cpp"
 
     def requirements(self):
-        self.requires("libzip/1.11.4")
+        self.requires("nlohmann_json/3.11.2")
 
     def layout(self):
         cmake_layout(self)
