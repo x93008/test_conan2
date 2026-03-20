@@ -23,11 +23,11 @@ Conan 2.x CMakeDeps should generate `-config.cmake` files for all dependencies i
 ## Build
 
 ```bash
-# Install dependencies
-conan install . --build=missing
+# Clean previous builds
+conan remove "test_conan2/*" -c
 
-# Build
-conan build .
+# Create package (rebuild test_conan2 and missing dependencies)
+conan create . -b missing
 ```
 
 ## Verify Generated Configs
